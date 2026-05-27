@@ -20,7 +20,6 @@ No public APIs, types, or repo code change. The only intended tracked output is 
 - Create a VHS tape that:
   - Uses a 960x540 terminal, `TokyoNight` theme, fixed font size, and disabled cursor blink.
   - Opens the temporary draft in Neovim from the existing `word` plugin checkout.
-  - Hidden from capture: selects style 1.
   - Hidden from capture: requests `word` suggestions.
   - Shows the pending state and waits briefly for the HUD/suggestions.
   - Hidden from capture: applies suggestion 1.
