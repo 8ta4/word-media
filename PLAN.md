@@ -10,16 +10,16 @@ Use:
 - `auto-editor` for trimming slow/static waits
 - `ffmpeg` for final GIF encoding
 
-No public APIs, types, or repo code change. The only intended tracked output is the GIF.
+No public APIs, types, or repo code change. The intended tracked outputs are the GIF and a committed demo markdown fixture.
 
 ## Implementation
 
-- Stage capture inputs and intermediate media in a temporary working directory.
-- Create a temporary demo markdown file with one intentionally rough sentence:
+- Stage intermediate media in a temporary working directory.
+- Add a committed `demo.md` file with one intentionally rough sentence:
   `This sentence dont read right, but the idea is useful.`
 - Create a VHS tape that:
-  - Uses a 960x540 terminal, `TokyoNight` theme, fixed font size, and disabled cursor blink.
-  - Opens the temporary draft in Neovim from the existing `word` plugin checkout.
+  - Uses the yabai-managed terminal layout, `TokyoNight` theme, and fixed font size.
+  - Opens the committed `demo.md` in Neovim from the existing `word` plugin checkout.
   - Hidden from capture: requests `word` suggestions.
   - Shows the pending state and waits briefly for the HUD/suggestions.
   - Hidden from capture: applies suggestion 1.
@@ -31,12 +31,13 @@ No public APIs, types, or repo code change. The only intended tracked output is 
 ## Test Plan
 
 - Verify the GIF exists.
+- Verify `demo.md` is tracked and contains the intended rough sentence.
 - Verify media metadata with `file` and `magick identify`.
 - Render representative frames and inspect that:
   - Neovim opens with the rough sentence visible.
   - The `word` HUD appears with explanation/suggestions.
   - Applying suggestion 1 visibly rewrites the sentence.
-  - The final GIF loops cleanly and remains readable at 960px width.
+  - The final GIF loops cleanly and remains readable in the captured layout.
 
 ## Assumptions
 
